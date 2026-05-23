@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <script>
+    // Shuruat mein hi history wall khadi karo
+    window.history.pushState(null, null, window.location.href);
+
+    window.addEventListener('popstate', function (event) {
+        // Kisi bhi nano-second ke background jump ko yahin freeze karo
+        window.history.pushState(null, null, window.location.href);
+
+        // Custom Modal ko screen par laao
+        const modal = document.getElementById('customAlertModal');
+        if (modal) {
+            modal.style.display = 'flex';
+        }
+
+        // STAY BUTTON: Modal band, bache ka data (Aman gupta) safe, no refresh!
+        document.getElementById('btnStay').onclick = function() {
+            modal.style.display = 'none';
+            window.history.pushState(null, null, window.location.href);
+        };
+
+        // LEAVE BUTTON: Portal se seedha google par baahar
+        document.getElementById('btnLeave').onclick = function() {
+            // Janam-janam ki history clear karke google par phek do
+            window.location.replace("https://www.google.com");
+        };
+    });
+    
+</script>
+    
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <meta charset=UTF-8>
+        <meta name="viewport" content="width=device-width, initial-1.0">
+        <!-- Naya Branding aur SEO -->
+    <title>Space Academy | Real-Based IQ Assessment</title>
+    <meta name="description" content="Advanced IQ Assessment Platform — Test your logical reasoning, analytical thinking, memory, and problem-solving skills through a professional timed assessment system. Get instant IQ-like performance analysis with smart scoring based on accuracy and speed.">
+    
+    <!-- Logo/Favicon -->
+    <link rel="icon" type="image/png" href="logo_space.png">
+    <link rel="shortcut icon" href="logo_space.png">
+        <link rel="stylesheet" href="style.css">
+          <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body>
+
+    <div class="razor-header">
+    <div class="header-left">
+        <button class="menu-btn" id="menuToggleBtn" onclick="togglePortalMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+       
+        <span class="portal-title">Space Academy Portal</span>
+    </div>
+    <div class="header-right">
+        <div class="user-avatar">VS</div>
+    </div>
+</div>
+
+<div class="portal-menu-overlay" id="menuOverlay" onclick="togglePortalMenu()"></div>
+
+<div class="portal-menu-panel" id="menuPanel">
+    
+    <div class="brand-section">
+        <h3>Space Academy Menu</h3>
+    </div>
+
+    <div class="menu-list">
+        
+        <div class="menu-item" onclick="openSectionModal('rulesModal')">
+            <div class="item-icon green-icon"><i class="fas fa-clipboard-list"></i></div>
+            <div class="item-text">
+                <h4>Test Rules</h4>
+                <p>Comprehensive overview of assessment rules.</p>
+            </div>
+        </div>
+
+        <div class="menu-item-wrapper">
+            <div class="menu-item" onclick="toggleSubDropdown('supportDropdown')">
+                <div class="item-icon blue-icon"><i class="fas fa-headset"></i></div>
+                <div class="item-text">
+                    <h4>Contact Support</h4>
+                    <p>Get instant technical assistance.</p>
+                </div>
+            </div>
+            <div class="menu-sub-dropdown" id="supportDropdown">
+                <a href="https://wa.me/919761702726" target="_blank" class="sub-info-line link-action-row">
+                    <i class="fab fa-whatsapp"></i> <span>WhatsApp: +91 9761702726 (Click to Chat)</span>
+                </a>
+                <div class="sub-info-line"><i class="fas fa-phone-alt"></i> Alternative: +91 9675043837</div>
+                <a href="mailto:varunrider395@gmail.com?subject=Space%20Academy%20Support%20Request" class="sub-info-line link-action-row">
+                    <i class="fas fa-envelope"></i> <span>Email: varunrider395@gmail.com</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-item" onclick="openSectionModal('directorModal')">
+            <div class="item-icon dark-icon">
+                <img src="1000197778.png" alt="Director Logo" class="inner-item-logo">
+            </div>
+            <div class="item-text">
+                <h4>Director Academy</h4>
+                <p>Explore core sections and intro specs.</p>
+            </div>
+        </div>
+
+        <div class="menu-item" onclick="openSectionModal('faqModal')">
+            <div class="item-icon grey-icon"><i class="fas fa-question-circle"></i></div>
+            <div class="item-text">
+                <h4>FAQ</h4>
+                <p>Frequently Asked Questions regarding assessment.</p>
+            </div>
+        </div>
+
+        <div class="menu-item" id="shareThisItem" onclick="toggleShareLinks(event)">
+            <div class="item-icon share-icon"><i class="fas fa-share-alt"></i></div>
+            <div class="item-text">
+                <h4>Share this</h4>
+                <p>Expand to access ecosystem channels.</p>
+            </div>
+        </div>
+
+        <div class="menu-item" onclick="openSectionModal('giftModal')">
+            <div class="item-icon orange-icon"><i class="fas fa-gift"></i></div>
+            <div class="item-text">
+                <h4>Share Gift</h4>
+                <p>Submit reviews and redeem code modules.</p>
+            </div>
+        </div>
+
+        <div class="menu-item" onclick="openSectionModal('settingsModal')">
+            <div class="item-icon settings-icon"><i class="fas fa-sliders-h"></i></div>
+            <div class="item-text">
+                <h4>Settings</h4>
+                <p>Themes, layout adjustments and audio engine toggles.</p>
+            </div>
+        </div>
+
+        <div class="menu-item logout-item" onclick="togglePortalMenu()">
+            <div class="item-icon red-icon"><i class="fas fa-times-circle"></i></div>
+            <div class="item-text">
+                <h4>Exit Menu</h4>
+                <p>Close operational menu instantly.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="social-side-stack" id="socialStack">
+        <a href="https://www.instagram.com/varun__sagar__vk?igsh=ZDF0N2t0NzBvNXpt" target="_blank" class="social-link-item insta-color">
+            <i class="fab fa-instagram"></i> 
+            <span class="link-text">Instagram: https://instagram.com/varun__sagar__vk</span>
+        </a>
+        <a href="https://www.youtube.com/@Instructorvarun" target="_blank" class="social-link-item yt-color">
+            <i class="fab fa-youtube"></i> 
+            <span class="link-text">YouTube: https://youtube.com/@Instructorvarun</span>
+        </a>
+        <a href="https://www.facebook.com/share/1CarZJQese/" target="_blank" class="social-link-item fb-color">
+            <i class="fab fa-facebook-f"></i> 
+            <span class="link-text">Facebook: https://www.facebook.com/share/1CarZJQese/</span>
+        </a>
+        <a href="https://x.com/VarunRider78725" target="_blank" class="social-link-item tw-color">
+            <i class="fab fa-twitter"></i> 
+            <span class="link-text">Twitter: https://x.com/VarunRider78725</span>
+        </a>
+        <a href="https://www.linkedin.com/in/varun-rider-454a463b" target="_blank" class="social-link-item li-color">
+            <i class="fab fa-linkedin-in"></i> 
+            <span class="link-text">LinkedIn: https://linkedin.com/in/varun-rider</span>
+        </a>
+        <a href="https://t.me/VarunRider395IQAssessment" target="_blank" class="social-link-item tg-color">
+            <i class="fab fa-telegram-plane"></i> 
+            <span class="link-text">Telegram: https://t.me/VarunRider395IQAssessment</span>
+        </a>
+    </div>
+</div>
+
+<div id="rulesModal" class="info-content-modal">
+    <div class="modal-body">
+        <span class="close-modal" onclick="closeSectionModal('rulesModal')">&times;</span>
+        <h2>Test Rules</h2>
+        <ul class="clean-bullet-list">
+            <li><strong>Total Questions:</strong> 30 — Attempt all questions carefully.</li>
+            <li><strong>Time Limit:</strong> 08 Minutes — The timer will run continuously.</li>
+            <li>Do not refresh or close the page after starting the test.</li>
+            <li>Avoid any external help to ensure accurate results.</li>
+            <li>The test will auto-submit when the time is over.</li>
+            <li>The timer will start 5 seconds after clicking the button.</li>
+            <li>Take this test in a calm and peaceful environment.</li>
+        </ul>
+    </div>
+</div>
+
+<div id="directorModal" class="info-content-modal">
+    <div class="modal-body">
+        <span class="close-modal" onclick="closeSectionModal('directorModal')">&times;</span>
+        <div class="modal-logo-center"><img src="1000197778.png" alt="Space Academy Logo"></div>
+        <h2>Director Academy Information</h2>
+        <div class="academy-section-block"><h3>1. Home Page</h3><p>Welcome to Space Academy Portal! Unlock Your Intelligence & Skills with our top tier performance evaluation trackers.</p></div>
+        <div class="academy-section-block"><h3>2. About Us</h3><p>Space Academy is engineered to build highly effective analytical and cognitive skillsets.</p></div>
+        <div class="academy-section-block"><h3>3. Courses Section</h3><p>Explore customized tracks including English Speaking, IQ Test, Science, Computer Basics, and Personality Development.</p></div>
+        <div class="academy-section-block"><h3>4. IQ Test Section</h3><p>Features access to free cultural-fair metric evaluations, precision timing trackers, and deep structural score analytics.</p></div>
+    </div>
+</div>
+
+<div id="faqModal" class="info-content-modal">
+    <div class="modal-body">
+        <span class="close-modal" onclick="closeSectionModal('faqModal')">&times;</span>
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-row"><strong>Q1: What is the processing fee for the official evaluation dashboard?</strong><p>Ans: The standard assessment processing fee is set to ₹50 for structured profile verifications.</p></div>
+        <div class="faq-row"><strong>Q2: Will I receive a verified institutional certificate?</strong><p>Ans: Yes, an automated cryptographic evaluation certificate is processed instantly upon validation completion.</p></div>
+        <div class="faq-row"><strong>Q3: How are the score matrix and results delivered?</strong><p>Ans: Detailed spatial logic tracking and charts are updated straight on the response profile view post-submission.</p></div>
+    </div>
+</div>
+
+<div id="giftModal" class="info-content-modal">
+    <div class="modal-body">
+        <span class="close-modal" onclick="closeSectionModal('giftModal')">&times;</span>
+        <h2>Share Gift & Rewards</h2>
+        <p>Give us your structural experience feedback. Support the academy or redeem access values below.</p>
+        <div class="upi-box">Official UPI Merchant ID: <strong>9761702726-6@axl</strong></div>
+        <div class="redeem-container">
+            <input type="text" id="couponInput" placeholder="Enter Redeem Code Here...">
+            <button onclick="executeRedeemVerification()">Validate Code</button>
+        </div>
+        <p id="redeemStatus" style="margin-top:10px; font-weight:bold; font-size:13px;"></p>
+    </div>
+</div>
+
+<div id="settingsModal" class="info-content-modal">
+    <div class="modal-body">
+        <span class="close-modal" onclick="closeSectionModal('settingsModal')">&times;</span>
+        <h2>Portal System Settings</h2>
+        
+        <div class="settings-control-row">
+            <span>Select System Interface Theme:</span>
+            <select id="themeSelector" onchange="applySystemThemeChange()">
+                <option value="cyan">Dark Navy + Neon Cyan</option>
+                <option value="purple">Purple + Royal Blue</option>
+                <option value="dark">Classic Deep Slate Black</option>
+            </select>
+        </div>
+        
+        <div class="settings-control-row">
+            <span>Ringtone (Azimov Longing):</span>
+            <select id="ringtoneTrackSelector" onchange="switchTrackSelection()">
+                <option value="track1">Azimov Longing Default</option>
+                <option value="track2">Cyber Beep Electronic</option>
+                <option value="track3">Cosmic Clock Ticking</option>
+            </select>
+        </div>
+
+        <div class="settings-control-row volume-control-wrapper">
+            <span>Ringtone Volume Level:</span>
+            <div class="volume-slider-box">
+                <button type="button" class="vol-step-btn" onclick="decrementVolumeStep()">-</button>
+                <input type="range" id="volumeSliderControl" min="0" max="100" value="70" oninput="adjustAudioEngineVolume()">
+                <button type="button" class="vol-step-btn" onclick="incrementVolumeStep()">+</button>
+            </div>
+        </div>
+        
+        <div class="settings-control-row">
+            <span>Portal Ringtone Audio Engine:</span>
+            <label class="toggle-switch-wrapper">
+                <input type="checkbox" id="audioToggleSwitch" onchange="handleAudioToggleChange()">
+                <span class="toggle-slider"></span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <div id="customAlertModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 10000; align-items: center; justify-content: center;">
+    <div style="background: white; padding: 25px; border-radius: 12px; max-width: 380px; width: 85%; text-align: center; box-shadow: 0px 4px 15px rgba(0,0,0,0.2); font-family: sans-serif;">
+        <h3 style="margin-top: 0; color: #333; font-size: 18px;">Space Academy</h3>
+        <p style="color: #666; font-size: 15px; margin-bottom: 25px; line-height: 1.4;">Are you sure you want to leave the portal?</p>
+        
+        <div style="display: flex; gap: 10px; justify-content: center;">
+            <button id="btnLeave" style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; flex: 1;">Leave</button>
+            <button id="btnStay" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; flex: 1;">Stay</button>
+        </div>
+    </div>
+</div>
+
+    <div id="splash-screen">
+    <video id="loading-video" autoplay muted playsinline>
+        <source src="loading_good.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+    <center>
+
+      <div id="home-section">
+      <img src="logo.png" alt="Psychological" class="logo">
+
+      <div class="regidtratin-card">
+      <h2>Psychological IQ Assessment</h2>
+      
+
+       <div class="input-group">
+       <label for="user-name">Candidate Name:</label>
+       <input type="text" id="user-name" placeholder="Enter Full Name" required>
+       </div>
+      
+       <div class="input-group">
+       <label for="user-age">Candidate Age:</label>
+       <input type="number" id="user-age" placeholder="Example: 18" required>
+       </div>
+       
+       <div class="input-group">
+       <label for="user-gender">Candidate Gender</label>
+
+       <select id="user-gender">
+    <option value="">Select Gender</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Others">Others</option>
+    </select>
+    <div class="captcha-wrapper" style="margin: 40px 0; padding: 15px; border: 1px solid #d3d3d3; background: #f9f9f9; border-radius: 4px; max-width: 320px;">
+    
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <input type="checkbox" id="captchaCheck" style="width: 24px; height: 24px; cursor: pointer;">
+            <span style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">I'm not a robot</span>
+        </div>
+
+        <div style="text-align: center; color: #555; cursor: pointer;" onclick="generateCaptcha()">
+            <div style="font-size: 24px;">🔄</div> <div style="font-size: 9px; font-weight: bold;">reCAPTCHA</div>
+        </div>
+    </div>
+
+    <div style="margin-top: 5px; font-size: 10px; color: #777; text-align: right; padding-right: 5px;">
+        <a href="#" style="color: #777; text-decoration: none;">Privacy</a> | 
+        <a href="#" style="color: #777; text-decoration: none;">Terms</a>
+    </div>
+</div>
+        </div>
+        
+        </div>
+
+        <div id="warning-box">
+            <h3>⚠️Assessment Instructions</h3>
+        <ul>
+              <li>Attention: For an accurate assessment, ensure you are in a controlled, peaceful enviroment. Your focus determines the precision of the result.</li>
+        
+                 <li>The timer will run continuously and cannot be paused.</li>
+
+                 <li>For better results, do not seek help from others.</li>
+                 </ul>
+                 </div>
+
+                 <button id="start-btn">Submit</button>  
+
+                 </div>
+
+
+</center> 
+
+</div>
+
+   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="script.js"></script>
+    <script src="security.js"></script>
+
+    <script>
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splash-screen');
+            const video = document.getElementById('loading-video');
+            
+            // 1. Agar video khud poori khatam ho jaye (Normal Flow)
+            if (video) {
+                video.onended = function() {
+                    splash.style.opacity = '0';
+                    setTimeout(() => {
+                        splash.style.display = 'none';
+                    }, 500);
+                };
+            }
+
+            // 2. 🔥 BACKUP TIMER: Jo aapne kaha 6000ms (6 second) par panna khol dega
+            setTimeout(() => {
+                if (splash && splash.style.display !== 'none') {
+                    splash.style.opacity = '0';
+                    setTimeout(() => { 
+                        splash.style.display = 'none'; 
+                    }, 500);
+                }
+            }, 6000); // 6000ms poori tarah barkarar hai
+        });
+
+        let audioInstance = null; 
+
+function togglePortalMenu() {
+    const panel = document.getElementById('menuPanel');
+    const overlay = document.getElementById('menuOverlay');
+    panel.classList.toggle('open');
+    overlay.classList.toggle('open');
+}
+
+function toggleSubDropdown(dropdownId) {
+    const dropdown = document.getElementById(dropdownId);
+    dropdown.classList.toggle('active');
+}
+
+function toggleShareLinks(event) {
+    event.stopPropagation();
+    const stack = document.getElementById('socialStack');
+    stack.classList.toggle('expanded');
+}
+
+document.getElementById('menuPanel').addEventListener('click', function(e) {
+    const stack = document.getElementById('socialStack');
+    if (!document.getElementById('shareThisItem').contains(e.target) && !stack.contains(e.target)) {
+        stack.classList.remove('expanded');
+    }
+});
+
+function openSectionModal(modalId) {
+    document.getElementById(modalId).classList.add('show');
+}
+
+function closeSectionModal(modalId) {
+    document.getElementById(modalId).classList.remove('show');
+}
+
+function executeRedeemVerification() {
+    const code = document.getElementById('couponInput').value.trim().toUpperCase();
+    const statusMsg = document.getElementById('redeemStatus');
+    
+    if(code === "") {
+        statusMsg.style.color = "#e71d36";
+        statusMsg.innerText = "Please input a valid key payload first.";
+        return;
+    }
+    
+    if(code === "SPACE50" || code === "VARUNRIDER") {
+        statusMsg.style.color = "#2ec4b6";
+        statusMsg.innerText = "Code Verified Successfully! Premium Access Initiated.";
+    } else {
+        statusMsg.style.color = "#e71d36";
+        statusMsg.innerText = "Invalid Redeem Code entry. Please try another key.";
+    }
+}
+
+function applySystemThemeChange() {
+    const selection = document.getElementById('themeSelector').value;
+    document.body.className = ""; 
+    
+    if(selection === "purple") {
+        document.body.classList.add('theme-purple');
+    } else if (selection === "dark") {
+        document.body.classList.add('theme-dark');
+    }
+}
+
+// Audio Engine: Plays Audio and controls Volume
+function handleAudioToggleChange() {
+    const isSoundEnabled = document.getElementById('audioToggleSwitch').checked;
+    
+    if(isSoundEnabled) {
+        if (!audioInstance) {
+            audioInstance = new Audio('ringtone.mp3'); 
+            audioInstance.loop = true;
+        }
+        adjustAudioEngineVolume();
+        
+        audioInstance.play().catch(err => {
+            console.log("Audio play blocked: ", err);
+        });
+    } else {
+        if (audioInstance) {
+            audioInstance.pause();
+        }
+    }
+}
+
+// Dynamically updates the ringtone volume level [0.0 to 1.0]
+function adjustAudioEngineVolume() {
+    const currentSliderValue = document.getElementById('volumeSliderControl').value;
+    if (audioInstance) {
+        audioInstance.volume = currentSliderValue / 100;
+    }
+}
+
+// FIXED FEATURE: Decrement Volume Step via Button (-)
+function decrementVolumeStep() {
+    const slider = document.getElementById('volumeSliderControl');
+    let currentValue = parseInt(slider.value);
+    currentValue = Math.max(0, currentValue - 5); // 5 points se decrease karega, limit 0 tak
+    slider.value = currentValue;
+    adjustAudioEngineVolume();
+}
+
+// FIXED FEATURE: Increment Volume Step via Button (+)
+function incrementVolumeStep() {
+    const slider = document.getElementById('volumeSliderControl');
+    let currentValue = parseInt(slider.value);
+    currentValue = Math.min(100, currentValue + 5); // 5 points se increase karega, limit 100 tak
+    slider.value = currentValue;
+    adjustAudioEngineVolume();
+}
+
+function switchTrackSelection() {
+    const isSoundEnabled = document.getElementById('audioToggleSwitch').checked;
+    
+    if (audioInstance) {
+        audioInstance.pause();
+        audioInstance = null;
+    }
+    
+    if(isSoundEnabled) {
+        handleAudioToggleChange();
+    }
+}
+
+// ... (apke pehle ke saare functions) ...
+
+// --- 6-Second Delay for Header on Home Page ---
+window.addEventListener('load', function() {
+    // Check karo ki ye index page hai ya nahi
+    if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
+        setTimeout(function() {
+            const header = document.querySelector('.razor-header');
+            if (header) {
+                header.style.opacity = '1';
+                header.style.visibility = 'visible';
+            }
+        }, 6000); // 6000ms = 6 seconds
+    }
+});
+    </script>
+</body>
+</html>

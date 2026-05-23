@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Space Academy | Real-Based IQ Assessment</title>
+    
+    <meta name="description" content="Advanced IQ Assessment Platform — Test your logical reasoning, analytical thinking, memory, and problem-solving skills through a professional timed assessment system. Get instant IQ-like performance analysis with smart scoring based on accuracy and speed.">
+
+    <link rel="icon" type="image/png" href="logo_space.png">
+    <link rel="shortcut icon" href="logo_space.png">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <a href="instructions.html" class="back-button">
+    <svg class="back-arrow-svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+    </svg>
+    <span class="back-text">Back</span>
+</a>
+
+<div style="padding-top: 20px;"></div>
+
+<div id="submitLoader" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: white; z-index: 999999; justify-content: center; align-items: center;">
+    
+    <video id="veerVideo" style="width: 100%; height: 100%; object-fit: contain; background: white;" muted>
+        <source src="loading_veer.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+</div>
+
+</div>
+   
+
+  <div id="timer-box" style="display: none; background: #ff4757; color: white; padding: 15px; font-size: 24px; font-weight: bold; text-align: center; width: 100%; position: fixed; top: 0; left: 0; z-index: 10000;">
+    ⏰ TIME LEFT: <span id="timer-countdown">08:00</span>
+</div>
+
+    <center>
+        <div class="test-header">
+    <h1>Psychological Testing Zone</h1>
+</div>
+
+<div class="question-container" id="q1">
+    <p class="question-text">Q1. 4, 6, 9, 14, 16 ?</p>
+
+    <div class="option-container">
+        <label class="option">
+            <input type="radio" name="q1" value="A">
+            <span class="option-card">A) 18</span>
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q1" value="B">
+                <span class="option-card">B) 20</span>
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q1" value="C">
+                    <span class="option-card">C) 21</span>
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q1" value="D">
+                    <span class="option-card">D) 6</span>
+                </label>
+                </div>
+                </div>
+
+                <div class="question-container" id="q2">
+                <p class="question-text">Q2. Dog : Puppy :: Cow : ?</p>
+
+                <div class="option-container">
+                <label class="option">
+                <input type="radio" name="q2" value="A">
+                <span class="option-card">A) Calf</span>
+                    </label>
+
+                    <label class="option">
+                    <input type="radio" name="q2" value="B">
+                    <span class="option-card">B) Kid</span>
+                        </label>
+
+                    <label class="option">
+                    <input type="radio" name="q2" value="C">
+                    <span class="option-card">C) Cub</span>
+                        </label>
+
+                    <label class="option">
+                    <input type="radio" name="q2" value="D">
+                    <span class="option-card">D) Foal</span>
+                        </label>
+                        </div>
+                        </div>
+
+                <div class="question-container" id="q3">
+                    <p class="question-text">
+                        Q3. If 2x + 5 = 15, then x = ? <br>
+                     (अगर 2x + 5 = 15 है, तो x क्या होगा?)
+                        </p>
+
+                 <div class="option-container">
+                    <label class="option">
+                    <input type="radio" name="q3" value="A">
+                    <span class="option-card">A) 3</span>
+                       </label>
+
+                    <label class="option">
+                    <input type="radio" name="q3" value="B">
+                    <span class="option-card">B) 4</span>
+                        </label>
+
+                <label class="option">
+                 <input type="radio" name="q3" value="C">
+                <span class="option-card">C) 5</span>
+                                            </label>
+
+                <label class="option">
+                <input type="radio" name="q3" value="D">
+                 <span class="option-card">D) 6</span>
+                    </label>
+                    </div>
+                    </div>
+                                        
+            <div class="question-container" id="q4">
+                <p class="question-text">Q4. A cube has how many vertices?<br>
+                Cube में कितने vertices होते हैं?
+                </p>
+                <div class="option-container">
+
+                    <label class="option">
+                        <input type="radio" name="q4" value="A">
+                        <span class="option-card">A) 6</span>
+                    </label>
+
+                    <label class="option">
+                        <input type="radio" name="q4" value="B">
+                        <span class="option-card">B) 8</span>
+                    </label>
+              
+                    <label class="option">
+                        <input type="radio" name="q4" value="C">
+                        <span class="option-card">C) 10</span>
+                    </label>
+
+                    <label class="option">
+                        <input type="radio" name="q4" value="D">
+                        <span class="option-card">D) 12</span>
+                    </label>
+                    </div>
+                    </div>
+
+             <div class="question-container" id="q5">
+             <p class="question-text">Q5. 7, 14, 28, 56, ?</p>
+              <div class="option-container">
+
+                <label class="option">
+                        <input type="radio" name="q5" value="A">
+                        <span class="option-card">A) 96</span>
+                    </label>
+
+                    <label class="option">
+                        <input type="radio" name="q5" value="B">
+                        <span class="option-card">B) 112</span>
+                    </label>
+              
+                    <label class="option">
+                        <input type="radio" name="q5" value="C">
+                        <span class="option-card">C) 120</span>
+                    </label>
+
+                    <label class="option">
+                        <input type="radio" name="q5" value="D">
+                        <span class="option-card">D) 128</span>
+                    </label>
+                    </div>
+                    </div>
+
+                    <div class="question-container" id="q6">
+                        <p div class="question-text">Q6. What is the Synonym of “Quick”?</p>
+
+                    <div class="option-container">
+                    <label class="option">
+                        <input type="radio" name="q6" value="A">
+                        <span class="option-card">A) Slow</span>
+                    </label>
+                    
+
+                    <label class="option">
+                        <input type="radio" name="q6" value="B">
+                        <span class="option-card">B) Fast</span>
+                    </label>
+
+                    <label class="option">
+                        <input type="radio" name="q6" value="C">
+                        <span class="option-card">C) Late</span>
+                    </label>
+
+                    <label class="option">
+                        <input type="radio" name="q6" value="D">
+                        <span class="option-card">D) Calm</span>
+                    </label>
+                    </div>
+                    </div>
+                    
+
+                <div class="question-container" id="q7">
+                    <p class="question-text">Q7. 1, 3, 6, 10, 15, ?</p>
+                    <div class="option-container">
+
+                        <label class="option">
+                            <input type="radio" name="q7" value="A">
+                            <span class="option-card">A) 18</span>
+                        </label>
+
+                        <label class="option">
+                            <input type="radio" name="q7" value="B">
+                            <span class="option-card">B) 20</span>
+                        </label>
+
+                        <label class="option">
+                            <input type="radio" name="q7" value="C">
+                            <span class="option-card">C) 21</span>
+                        </label>
+
+                        <label class="option">
+                            <input type="radio" name="q7" value="D">
+                            <span class="option-card">D) 25</span>
+                        </label>
+                        </div>
+                        </div>
+                        
+                        <div class="question-container" id="q8">
+                            <p div class="question-text">Q8. A triangle has how many sides? <br>
+                            Triangle में कितनी sides होती हैं?</p>
+                            <div class="option-container">
+
+                                <label class="option">
+                                    <input type="radio" name="q8" value="A">
+                                    <span class="option-card">A) 2</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q8" value="B">
+                                    <span class="option-card">B) 3</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q8" value="C">
+                                    <span class="option-card">C) 4</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q8" value="D">
+                                    <span class="option-card">D) 5</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q9">
+                                    <p class="question-text">Q9. 15 ÷ 3 × 2 = ?</p>
+                                    <div class="option-container">
+
+                                          <label class="option">
+                                    <input type="radio" name="q9" value="A">
+                                    <span class="option-card">A) 5</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q9" value="B">
+                                    <span class="option-card">B) 10</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q9" value="C">
+                                    <span class="option-card">C) 15</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q9" value="D">
+                                    <span class="option-card">D) 20</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q10">
+                                    <p div class="question-text">Q10. Book : Author :: Painting : ?</p>
+                                    <div class="option-container">
+
+                                          <label class="option">
+                                    <input type="radio" name="q10" value="A">
+                                    <span class="option-card">A) Artist</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q10" value="B">
+                                    <span class="option-card">B) Writer</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q10" value="C">
+                                    <span class="option-card">C) Reader</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q10" value="D">
+                                    <span class="option-card">D) Teacher</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q11">
+                                    <p class="question-text">Q11. 9, 18, 36, 72, ?</p>
+                                    <div class="option-container">
+
+                                          <label class="option">
+                                    <input type="radio" name="q11" value="A">
+                                    <span class="option-card">A) 124</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q11" value="B">
+                                    <span class="option-card">B) 140</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q11" value="C">
+                                    <span class="option-card">C) 144</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q11" value="D">
+                                    <span class="option-card">D) 150</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q12">
+                                    <p class="question-text">Q12. What will be the opposite of “Strong”?</p>
+                                    <div class="option-container">
+
+                                        <label class="option">
+                                    <input type="radio" name="q12" value="A">
+                                    <span class="option-card">A) Weak</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q12" value="B">
+                                    <span class="option-card">B) Power</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q12" value="C">
+                                    <span class="option-card">C) Tough</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q12" value="D">
+                                    <span class="option-card">D) Solid</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q13">
+                                    <p class="question-text">Q13. If a = 3, b = 4 → a² + b² = ?</p>
+                                     <div class="option-container">
+
+                                        <label class="option">
+                                    <input type="radio" name="q13" value="A">
+                                    <span class="option-card">A) 12</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q13" value="B">
+                                    <span class="option-card">B) 24</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q13" value="C">
+                                    <span class="option-card">C) 25</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q13" value="D">
+                                    <span class="option-card">D) 18</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q14">
+                                    <p class="question-text">Q14. Which shape has 4 equal sides? <br>
+                                     किस shape की 4 sides बराबर होती हैं?</p>
+                                     <div class="option-container">
+
+                                          <label class="option">
+                                    <input type="radio" name="q14" value="A">
+                                    <span class="option-card">A) Rectangle</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q14" value="B">
+                                    <span class="option-card">B) Triangle</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q14" value="C">
+                                    <span class="option-card">C) Square</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q14" value="D">
+                                    <span class="option-card">D) Circle</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q15">
+                                    <p class="question-text">Q15. 2, 6, 7, 21, 22, ?</p>
+                                    <div class="option-container">
+
+                                        <label class="option">
+                                    <input type="radio" name="q15" value="A">
+                                    <span class="option-card">A) 44</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q15" value="B">
+                                    <span class="option-card">B) 66</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q15" value="C">
+                                    <span class="option-card">C) 48</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q15" value="D">
+                                    <span class="option-card">D) 72</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q16">
+                                    <p class="question-text">Q16. Sun : Light :: Moon : ?</p>
+                                    <div class="option-container">
+
+                                        <label class="option">
+                                    <input type="radio" name="q16" value="A">
+                                    <span class="option-card">A) Dark</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q16" value="B">
+                                    <span class="option-card">B) Night</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q16" value="C">
+                                    <span class="option-card">C) Shine</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q16" value="D">
+                                    <span class="option-card">D) Glow</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q17">
+                                    <p class="question-text">Q17. A pentagon has how many sides? <br>
+                                          Pentagon में कितनी sides होती हैं?</p>
+                                          <div class="option-container">
+
+                                            <label class="option">
+                                    <input type="radio" name="q17" value="A">
+                                    <span class="option-card">A) 4</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q17" value="B">
+                                    <span class="option-card">B) 5</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q17" value="C">
+                                    <span class="option-card">C) 6</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q17" value="D">
+                                    <span class="option-card">D) 7</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q18">
+                                    <p class="question-text">Q18. 2, 3, 5, 8, 13, ?</p>
+                                    <div class="option-container">
+
+                                         <label class="option">
+                                    <input type="radio" name="q18" value="A">
+                                    <span class="option-card">A) 18</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q18" value="B">
+                                    <span class="option-card">B) 20</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q18" value="C">
+                                    <span class="option-card">C) 21</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q18" value="D">
+                                    <span class="option-card">D) 19</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q19">
+                                    <p class="question-text">Q19. A sphere has how many faces? <br>
+                                    Sphere में कितने faces होते हैं?</p>
+                                    <div class="option-container">
+
+                                        <label class="option">
+                                    <input type="radio" name="q19" value="A">
+                                    <span class="option-card">A) 0</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q19" value="B">
+                                    <span class="option-card">B) 1</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q19" value="C">
+                                    <span class="option-card">C) 2</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q19" value="D">
+                                    <span class="option-card">D) 3</span>
+                                </label>
+                                </div>
+                            </div>
+
+                            <div class="question-container" id="q20">
+                                <p class="question-text">Q20. If 10 pens cost ₹80, then 1 pen costs?</p>
+                                <div class="option-container">
+
+                                    <label class="option">
+                                    <input type="radio" name="q20" value="A">
+                                    <span class="option-card">A) 6</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q20" value="B">
+                                    <span class="option-card">B) 8</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q20" value="C">
+                                    <span class="option-card">C) 10</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q20" value="D">
+                                    <span class="option-card">D) 12</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q21">
+                                    <p class="question-text">Q21. Choose the odd one out:</p>
+                                    <div class="option-container">
+
+                                         <label class="option">
+                                    <input type="radio" name="q21" value="A">
+                                    <span class="option-card">A) Rose</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q21" value="B">
+                                    <span class="option-card">B) Lotus</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q21" value="C">
+                                    <span class="option-card">C) Tulip</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q21" value="D">
+                                    <span class="option-card">D) Apple</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q22">
+                                    <p class="question-text">Q22. A rectangle has how many angles? <br>
+                                      Rectangle में कितने angles होते हैं?</p>
+                                      <div class="option-container">
+
+                                        <label class="option">
+                                    <input type="radio" name="q22" value="A">
+                                    <span class="option-card">A) 2</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q22" value="B">
+                                    <span class="option-card">B) 3</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q22" value="C">
+                                    <span class="option-card">C) 4</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q22" value="D">
+                                    <span class="option-card">D) 5</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q23">
+                                    <p class="question-text">Q23. 5, 7, 6, 8, 7, 9, ?</p>
+                                    <div class="option-container">
+
+                                        <label class="option">
+                                    <input type="radio" name="q23" value="A">
+                                    <span class="option-card">A) 8</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q23" value="B">
+                                    <span class="option-card">B) 10</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q23" value="C">
+                                    <span class="option-card">C) 7</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q23" value="D">
+                                    <span class="option-card">D) 9</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q24">
+                                    <p class="question-text">Q24. Find the correctly spelled word:</p>
+                                    <div class="option-container">
+
+                                        <label class="option">
+                                    <input type="radio" name="q24" value="A">
+                                    <span class="option-card">A) Recieve</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q24" value="B">
+                                    <span class="option-card">B) Receive</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q24" value="C">
+                                    <span class="option-card">C) Recive</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q24" value="D">
+                                    <span class="option-card">D) Receeve</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q25">
+                                    <p class="question-text">Q25. A cube has how many edges? <br>
+                                 Cube में कितने edges होते हैं?</p>
+                                 <div class="option-container">
+
+                                      <label class="option">
+                                    <input type="radio" name="q25" value="A">
+                                    <span class="option-card">A) 8</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q25" value="B">
+                                    <span class="option-card">B) 10</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q25" value="C">
+                                    <span class="option-card">C) 12</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q25" value="D">
+                                    <span class="option-card">D) 14</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q26">
+                                    <p class="question-text">Q26. Pen : Ink :: Car : ?</p>
+                                    <div class="option-container">
+
+                                         <label class="option">
+                                    <input type="radio" name="q26" value="A">
+                                    <span class="option-card">A) Driver</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q26" value="B">
+                                    <span class="option-card">B) Fuel</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q26" value="C">
+                                    <span class="option-card">C) Wheel</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q26" value="D">
+                                    <span class="option-card">D) Road</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q27">
+                                    <p class="question-text">Q27. Square of 12 = ?</p>
+                                    <div class="option-container">
+
+                                         <label class="option">
+                                    <input type="radio" name="q27" value="A">
+                                    <span class="option-card">A) 124</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q27" value="B">
+                                    <span class="option-card">B) 144</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q27" value="C">
+                                    <span class="option-card">C) 154</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q27" value="D">
+                                    <span class="option-card">D) 164</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q28">
+                                    <p class="question-text">Q28. Opposite faces of dice add up to?</p>
+                                    <div class="option-container">
+
+                                        <label class="option">
+                                    <input type="radio" name="q28" value="A">
+                                    <span class="option-card">A) 6</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q28" value="B">
+                                    <span class="option-card">B) 7</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q28" value="C">
+                                    <span class="option-card">C) 8</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q28" value="D">
+                                    <span class="option-card">D) 9</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q29">
+                                    <p class="question-text">Q29. A number tripled is 27.What is that number?</p>
+                                    <div class="option-container">
+
+                                        <label class="option">
+                                    <input type="radio" name="q29" value="A">
+                                    <span class="option-card">A) 6</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q29" value="B">
+                                    <span class="option-card">B) 7</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q29" value="C">
+                                    <span class="option-card">C) 8</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q29" value="D">
+                                    <span class="option-card">D) 9</span>
+                                </label>
+                                </div>
+                                </div>
+
+                                <div class="question-container" id="q30">
+                                    <p class="question-text">Q30. Choose correct sentence:</p>
+                                    <div class="option-container">
+
+                                         <label class="option">
+                                    <input type="radio" name="q30" value="A">
+                                    <span class="option-card">A) He go to school daily</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q30" value="B">
+                                    <span class="option-card">B)  He goes to school daily</span>
+                                </label>
+
+                                <label class="option">
+                                    <input type="radio" name="q30" value="C">
+                                    <span class="option-card">C) He going to school daily</span>
+                                </label>
+                    
+                                <label class="option">
+                                    <input type="radio" name="q30" value="D">
+                                    <span class="option-card">D) He gone to school daily</span>
+                                </label>
+                                </div>
+                                </div>
+                                </div>
+
+                                <div style="text-align: center; margin-top: 40px; margin-bottom: 60px;">
+    <button type="button" id="submit-btn" onclick="goToCalculation()" style="background-color: #2ed573; color: white; padding: 15px 40px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+    SUBMIT TEST
+</button>
+</div>
+
+                                </center>
+                             <script src="script.js"></script>
+                             <script src="security.js"></script>
+                                </body>
+                                </html>

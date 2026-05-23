@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Naya Title yahan Line 6 par -->
+    <title>Space Academy | Real-Based IQ Assessment</title>
+
+    <!-- Naye Meta tags aur Favicon yahan -->
+    <meta name="description" content="Advanced IQ Assessment Platform — Test your logical reasoning, analytical thinking, memory, and problem-solving skills through a professional timed assessment system. Get instant IQ-like performance analysis with smart scoring based on accuracy and speed.">
+    <link rel="icon" type="image/png" href="logo_space.png">
+    <link rel="shortcut icon" href="logo_space.png">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f7f6; padding: 20px; }
+        .container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 500px; margin: auto; margin-top: 60px; }
+        
+        /* Formula Styling (Bilkul Image jaisa) */
+        .formula-box { border: 2px solid #333; display: inline-block; padding: 10px; margin: 15px 0; font-size: 18px; font-weight: bold; }
+        .fraction { display: inline-block; vertical-align: middle; text-align: center; padding: 0 5px; }
+        .fraction span { display: block; padding: 2px 5px; }
+        .numerator { border-bottom: 1.5px solid #333; }
+        
+        input { padding: 10px; width: 80%; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+        button { background-color: #2ed573; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 18px; font-weight: bold; }
+        button:hover { background-color: #26af5f; }
+        #iq-output { margin-top: 20px; }
+
+             :root {
+    --bg-dark: #0b132b;
+    --bg-panel: #1c2541;
+    --border-line: #3a506b;
+    --neon-accent: #00b4d8;
+    --text-white: #ffffff;
+    --text-grey: #8ecae6;
+}
+
+/* Header Navbar Config - Highest priority stacking to prevent cutting */
+.razor-header {
+   position: fixed;        /* Isse header apni jagah par lock ho jayega */
+    top: 0;                 /* Screen ki sabse upar wali line se chipka dega */
+    left: 50%;              /* Pehle 50% left me le jayega */
+    transform: translateX(-50%); /* Phir perfect mathematical center me align karega */
+    width: 100%;            /* Poori screen ki width cover karega Razorpay ki tarah */
+    z-index: 999;    
+    height: 50px;       /* Taaki koi text iske upar na tair sake */
+    
+    background-color: var(--bg-dark); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 18px; 
+    border-bottom: 2px solid var(--border-line); /* Clean bottom line look */
+    box-sizing: border-box;
+}
+.header-left { display: flex; align-items: center; gap: 14px; width: calc(100% - 60px); }
+.menu-btn, .home-btn {
+    background: none; border: none; color: var(--text-white);
+    font-size: 18px; cursor: pointer; transition: color 0.2s; flex-shrink: 0;
+}
+.menu-btn:hover, .home-btn:hover { color: var(--neon-accent); }
+
+/* Prevents the text title from breaking or shrinking on desktop screens */
+.portal-title { 
+    color: var(--text-white); 
+    font-size: 16px; 
+    font-weight: 600; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0; 
+}
+.user-avatar {
+    background: #2b3a67; color: #fff; width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; font-size: 13px; font-weight: bold; flex-shrink: 0;
+}
+
+/* Slider Frame Overlay */
+.portal-menu-overlay {
+    display: none; position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 99999;
+}
+.portal-menu-overlay.open { display: block; }
+
+/* Menu Slide System (Forces view directly over logos and bodies) */
+.portal-menu-panel {
+    position: fixed; top: 0; left: -310px; width: 310px; height: 100%;
+    background-color: var(--bg-panel); z-index: 100000;
+    transition: left 0.3s ease-in-out; display: flex; flex-direction: column;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.5); font-family: sans-serif;
+}
+.portal-menu-panel.open { left: 0; }
+
+.brand-section { padding: 14px; background-color: var(--bg-dark); border-bottom: 1px solid var(--border-line); text-align: center; }
+.brand-section h3 { margin: 0; color: var(--text-white); font-size: 15px; letter-spacing: 0.5px; }
+
+.menu-list { padding: 10px 6px; display: flex; flex-direction: column; gap: 4px; overflow-y: auto; }
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;               /* 🎯 Icon aur text ke beech ka gap barabar rahega */
+    padding: 8px 12px;       /* 🎯 Left padding fixed rahegi */
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    justify-content: flex-start; /* 👈 Taaki sab kuch bilkul left se hi shuru ho */
+    width: 100%;             /* 👈 Full width automatic alignment ke liye */
+    box-sizing: border-box;
+}
+.menu-item:hover { background-color: rgba(255,255,255,0.06); }
+
+.item-icon { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; flex-shrink: 0; }
+.inner-item-logo { width: 100%; height: 100%; border-radius: 50%; }
+
+.green-icon { background-color: #2ec4b6; }
+.blue-icon { background-color: #0077b6; }
+.grey-icon { background-color: #6c757d; }
+.share-icon { background-color: #00b4d8; }
+.orange-icon { background-color: #ff9f1c; }
+.settings-icon { background-color: #4a5759; }
+.red-icon { background-color: #e71d36; }
+.dark-icon { background: none; }
+
+.item-text h4 { color: var(--text-white); margin: 0; font-size: 13px; font-weight: 600; text-align: left;}
+.item-text p { color: var(--text-grey); margin: 2px 0 0 0; font-size: 11px; line-height: 1.2; }
+
+/* Contact Support Dropdown Setup with Click Action Colors */
+.menu-item-wrapper { display: flex; flex-direction: column; }
+.menu-sub-dropdown {
+    max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
+    background-color: rgba(0,0,0,0.25); padding: 0 12px; border-radius: 4px;
+    margin: 0 8px; display: flex; flex-direction: column; gap: 6px;
+}
+.menu-sub-dropdown.active { max-height: 140px; padding: 10px 12px; margin-bottom: 4px; border: 1px solid rgba(255,255,255,0.05); }
+.sub-info-line { color: #e0f2fe; font-size: 11px; display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.link-action-row { color: var(--neon-accent); font-weight: bold; padding: 4px 0; transition: transform 0.2s; }
+.link-action-row:hover { transform: translateX(3px); color: #fff; }
+.sub-info-line i { width: 14px; text-align: center; }
+
+/* Share This Stack Configurations (Untouched Style Mechanics) */
+.social-side-stack {
+    position: absolute; right: 8px; top: 120px;
+    display: flex; flex-direction: column; gap: 6px; z-index: 1010;
+    background: rgba(11, 19, 43, 0.9); padding: 6px; border-radius: 16px;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); width: 30px; overflow: hidden;
+}
+.social-side-stack.expanded { width: 230px; border-radius: 8px; box-shadow: -4px 4px 12px rgba(0,0,0,0.4); }
+.social-link-item { display: flex; align-items: center; text-decoration: none; color: #fff; height: 30px; width: 100%; }
+.social-link-item i { min-width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 14px; color: #fff; }
+.link-text { font-size: 10px; margin-left: 8px; white-space: nowrap; opacity: 0; transition: opacity 0.2s; }
+.social-side-stack.expanded .link-text { opacity: 1; }
+
+.insta-color i { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
+.yt-color i { background-color: #f00; }
+.fb-color i { background-color: #1877f2; }
+.tw-color i { background-color: #000; }
+.li-color i { background-color: #0a66c2; }
+.tg-color i { background-color: #0088cc; }
+
+/* Modals Overlay Settings */
+.info-content-modal {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.75); z-index: 999999; align-items: center; justify-content: center;
+    font-family: sans-serif; padding: 10px; box-sizing: border-box;
+}
+.info-content-modal.show { display: flex; }
+.modal-body {
+    background-color: var(--bg-panel); border: 1px solid var(--border-line);
+    padding: 20px; border-radius: 10px; width: 100%; max-width: 400px;
+    position: relative; color: var(--text-white); box-shadow: 0 8px 24px rgba(0,0,0,0.6); box-sizing: border-box;
+}
+.close-modal { position: absolute; top: 10px; right: 15px; font-size: 22px; color: var(--text-grey); cursor: pointer; }
+.close-modal:hover { color: #fff; }
+.modal-body h2 { margin-top: 0; font-size: 16px; border-bottom: 1px solid var(--border-line); padding-bottom: 8px; color: var(--neon-accent); }
+.clean-bullet-list { padding-left: 18px; margin: 12px 0; font-size: 12px; display: flex; flex-direction: column; gap: 6px; line-height: 1.4; }
+.modal-logo-center { text-align: center; margin-bottom: 10px; }
+.modal-logo-center img { width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--border-line); }
+.academy-section-block { margin-bottom: 12px; }
+.academy-section-block h3 { margin: 0 0 4px 0; font-size: 13px; color: #99e2b4; }
+.academy-section-block p { margin: 0; font-size: 11.5px; color: #e2eafc; line-height: 1.4; }
+.faq-row { margin-bottom: 12px; font-size: 12px; }
+.faq-row p { margin: 4px 0 0 0; color: #cbd5e1; }
+
+.upi-box { background: rgba(0,0,0,0.3); padding: 8px; border-radius: 4px; font-size: 12px; text-align: center; margin: 10px 0; border: 1px dashed var(--border-line); }
+.redeem-container { display: flex; gap: 8px; margin-top: 12px; }
+.redeem-container input { flex: 1; padding: 8px; background: #0b132b; border: 1px solid var(--border-line); color: #fff; border-radius: 4px; font-size: 12px; }
+.redeem-container button { padding: 8px 14px; background: #ff9f1c; border: none; color: #000; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 12px; }
+
+.settings-control-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; font-size: 12.5px; }
+.settings-control-row select { padding: 6px; background: #0b132b; color: #fff; border: 1px solid var(--border-line); border-radius: 4px; font-size: 12px; }
+
+.toggle-switch-wrapper { position: relative; display: inline-block; width: 38px; height: 20px; }
+.toggle-switch-wrapper input { opacity: 0; width: 0; height: 0; }
+.toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #4a5759; transition: .3s; border-radius: 20px; }
+.toggle-slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
+input:checked + .toggle-slider { background-color: var(--neon-accent); }
+input:checked + .toggle-slider:before { transform: translateX(18px); }
+
+body.theme-purple { --bg-dark: #1a1a2e; --bg-panel: #16213e; --border-line: #0f3460; --neon-accent: #e94560; }
+body.theme-dark { --bg-dark: #121212; --bg-panel: #1e1e1e; --border-line: #333333; --neon-accent: #cf6679; }
+
+
+/* 🔴 Warning ka poora dabba 5 second baad aayega aur center hoga */
+.warning-ticker {
+    background-color: #f8d7da; 
+    color: #491217; /* 🩸 Danger Dark Red */
+    border: 1px solid #f5c6cb; 
+    padding: 10px 15px;
+    
+    /* ↕️ margin-top ko 40px kiya hai taaki yeh button aur niche ke border ke bilkul CENTER me aaye */
+    margin: 40px auto 20px auto; 
+    width: 90%; 
+    border-radius: 30px; 
+    overflow: hidden; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    font-weight: bold;
+    font-size: 13.5px;
+    text-align: center;
+
+    /* ⏱️ Jadoo: Shuruat me poora dabba invisible rahega, 5s baad sudden display hoga */
+    opacity: 0;
+    animation: fadeInBox 0.1s linear 5s forwards; 
+}
+
+/* 🏃‍♂️ Text ghoomne ka logic (Yeh bhi 5s delay par chalega) */
+.ticker-text {
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%;
+    animation: moveWarningBtn 18s linear 5s infinite; 
+}
+
+/* 🎬 Poore dabbe ko 5 second baad dikhane ka animation */
+@keyframes fadeInBox {
+    to { opacity: 1; }
+}
+
+/* 🔄 Right to Left text ghumane ka animation */
+@keyframes moveWarningBtn {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-100%, 0, 0); }
+}
+
+/* 📱 Special Premium Rules for Mobile Screens */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Header ke title ka size mobile ke hisab se thoda chota aur set */
+    .portal-title {
+        font-size: 14px !important;  /* Desktop par 16px tha, mobile par 14px best hai */
+        max-width: 160px;            /* Taaki avatar ya buttons se takraye nahi */
+    }
+
+    /* 2. Social side stack ko mobile par thoda right se chipka do aur chota rakho */
+    .social-side-stack {
+        top: auto !important;
+        bottom: 20px !important;    /* 🧭 Mobile par side ke bajaye neeche right me float karega */
+        right: 5px !important;
+    }
+    
+    .social-side-stack.expanded {
+        width: 180px !important;    /* 🎯 Mobile par expand hone par card ko zyada nahi dabayega */
+    }
+    
+    /* 3. Modal body (Redeem/FAQ modals) ko mobile par screen se chipakne se rokne ke liye */
+    .modal-body {
+        width: 92% !important;      /* Dono side se halki padding bachegi, chipkega nahi */
+        padding: 15px !important;
+    }
+}
+    </style>
+</head>
+<body>
+    
+
+    <div class="razor-header">
+    <div class="header-left">
+        <button class="menu-btn" id="menuToggleBtn" onclick="togglePortalMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <a href="index.html" class="home-btn" title="Home">
+            <i class="fas fa-home"></i>
+        </a>
+        <span class="portal-title">Space Academy Portal</span>
+    </div>
+    <div class="header-right">
+        <div class="user-avatar">VS</div>
+    </div>
+</div>
+
+<div class="portal-menu-overlay" id="menuOverlay" onclick="togglePortalMenu()"></div>
+
+<div class="portal-menu-panel" id="menuPanel">
+    
+    <div class="brand-section">
+        <h3>Space Academy Menu</h3>
+    </div>
+
+    <div class="menu-list">
+        
+        <div class="menu-item" onclick="openSectionModal('rulesModal')">
+            <div class="item-icon green-icon"><i class="fas fa-clipboard-list"></i></div>
+            <div class="item-text">
+                <h4>Test Rules</h4>
+                <p>Comprehensive overview of assessment rules.</p>
+            </div>
+        </div>
+
+        <div class="menu-item-wrapper">
+            <div class="menu-item" onclick="toggleSubDropdown('supportDropdown')">
+                <div class="item-icon blue-icon"><i class="fas fa-headset"></i></div>
+                <div class="item-text">
+                    <h4>Contact Support</h4>
+                    <p>Get instant technical assistance.</p>
+                </div>
+            </div>
+            <div class="menu-sub-dropdown" id="supportDropdown">
+                <a href="https://wa.me/919761702726" target="_blank" class="sub-info-line link-action-row">
+                    <i class="fab fa-whatsapp"></i> <span>WhatsApp: +91 9761702726 (Click to Chat)</span>
+                </a>
+                <div class="sub-info-line"><i class="fas fa-phone-alt"></i> Alternative: +91 9675043837</div>
+                <a href="mailto:varunrider395@gmail.com?subject=Space%20Academy%20Support%20Request" class="sub-info-line link-action-row">
+                    <i class="fas fa-envelope"></i> <span>Email: varunrider395@gmail.com</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-item" onclick="openSectionModal('directorModal')">
+            <div class="item-icon dark-icon">
+                <img src="1000197778.png" alt="Director Logo" class="inner-item-logo">
+            </div>
+            <div class="item-text">
+                <h4>Director Academy</h4>
+                <p>Explore core sections and intro specs.</p>
+            </div>
+        </div>
+
+        <div class="menu-item" onclick="openSectionModal('faqModal')">
+            <div class="item-icon grey-icon"><i class="fas fa-question-circle"></i></div>
+            <div class="item-text">
+                <h4>FAQ</h4>
+                <p>Frequently Asked Questions regarding assessment.</p>
+            </div>
+        </div>
+
+        <div class="menu-item" id="shareThisItem" onclick="toggleShareLinks(event)">
+            <div class="item-icon share-icon"><i class="fas fa-share-alt"></i></div>
+            <div class="item-text">
+                <h4>Share this</h4>
+                <p>Expand to access ecosystem channels.</p>
+            </div>
+        </div>
+
+        <div class="menu-item" onclick="openSectionModal('giftModal')">
+            <div class="item-icon orange-icon"><i class="fas fa-gift"></i></div>
+            <div class="item-text">
+                <h4>Share Gift</h4>
+                <p>Submit reviews and redeem code modules.</p>
+            </div>
+        </div>
+
+        <div class="menu-item" onclick="openSectionModal('settingsModal')">
+            <div class="item-icon settings-icon"><i class="fas fa-sliders-h"></i></div>
+            <div class="item-text">
+                <h4>Settings</h4>
+                <p>Themes, layout adjustments and audio engine toggles.</p>
+            </div>
+        </div>
+
+        <div class="menu-item logout-item" onclick="togglePortalMenu()">
+            <div class="item-icon red-icon"><i class="fas fa-times-circle"></i></div>
+            <div class="item-text">
+                <h4>Exit Portal</h4>
+                <p>Close operational menu instantly.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="social-side-stack" id="socialStack">
+        <a href="https://www.instagram.com/varun__sagar__vk?igsh=ZDF0N2t0NzBvNXpt" target="_blank" class="social-link-item insta-color">
+            <i class="fab fa-instagram"></i> 
+            <span class="link-text">Instagram: https://instagram.com/varun__sagar__vk</span>
+        </a>
+        <a href="https://www.youtube.com/@Instructorvarun" target="_blank" class="social-link-item yt-color">
+            <i class="fab fa-youtube"></i> 
+            <span class="link-text">YouTube: https://youtube.com/@Instructorvarun</span>
+        </a>
+        <a href="https://www.youtube.com/@Instructorvarun" target="_blank" class="social-link-item fb-color">
+            <i class="fab fa-facebook-f"></i> 
+            <span class="link-text">Facebook: https://www.facebook.com/share/1CarZJQese/</span>
+        </a>
+        <a href="https://x.com/VarunRider78725" target="_blank" class="social-link-item tw-color">
+            <i class="fab fa-twitter"></i> 
+            <span class="link-text">Twitter: https://x.com/VarunRider78725</span>
+        </a>
+        <a href="https://www.linkedin.com/in/varun-rider-454a463b" target="_blank" class="social-link-item li-color">
+            <i class="fab fa-linkedin-in"></i> 
+            <span class="link-text">LinkedIn: https://linkedin.com/in/varun-rider</span>
+        </a>
+        <a href="https://t.me/VarunRider395IQAssessment" target="_blank" class="social-link-item tg-color">
+            <i class="fab fa-telegram-plane"></i> 
+            <span class="link-text">Telegram: https://t.me/VarunRider395IQAssessment</span>
+        </a>
+    </div>
+</div>
+
+<div id="rulesModal" class="info-content-modal">
+    <div class="modal-body">
+        <span class="close-modal" onclick="closeSectionModal('rulesModal')">&times;</span>
+        <h2>Test Rules</h2>
+        <ul class="clean-bullet-list">
+            <li><strong>Total Questions:</strong> 30 — Attempt all questions carefully.</li>
+            <li><strong>Time Limit:</strong> 08 Minutes — The timer will run continuously.</li>
+            <li>Do not refresh or close the page after starting the test.</li>
+            <li>Avoid any external help to ensure accurate results.</li>
+            <li>The test will auto-submit when the time is over.</li>
+            <li>The timer will start 5 seconds after clicking the button.</li>
+            <li>Take this test in a calm and peaceful environment.</li>
+        </ul>
+    </div>
+</div>
+
+<div id="directorModal" class="info-content-modal">
+    <div class="modal-body">
+        <span class="close-modal" onclick="closeSectionModal('directorModal')">&times;</span>
+        <div class="modal-logo-center"><img src="1000197778.png" alt="Space Academy Logo"></div>
+        <h2>Director Academy Information</h2>
+        <div class="academy-section-block"><h3>1. Home Page</h3><p>Welcome to Space Academy Portal! Unlock Your Intelligence & Skills with our top tier performance evaluation trackers.</p></div>
+        <div class="academy-section-block"><h3>2. About Us</h3><p>Space Academy is engineered to build highly effective analytical and cognitive skillsets.</p></div>
+        <div class="academy-section-block"><h3>3. Courses Section</h3><p>Explore customized tracks including English Speaking, IQ Test, Science, Computer Basics, and Personality Development.</p></div>
+        <div class="academy-section-block"><h3>4. IQ Test Section</h3><p>Features access to free cultural-fair metric evaluations, precision timing trackers, and deep structural score analytics.</p></div>
+    </div>
+</div>
+
+<div id="faqModal" class="info-content-modal">
+    <div class="modal-body">
+        <span class="close-modal" onclick="closeSectionModal('faqModal')">&times;</span>
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-row"><strong>Q1: What is the processing fee for the official evaluation dashboard?</strong><p>Ans: The standard assessment processing fee is set to ₹50 for structured profile verifications.</p></div>
+        <div class="faq-row"><strong>Q2: Will I receive a verified institutional certificate?</strong><p>Ans: Yes, an automated cryptographic evaluation certificate is processed instantly upon validation completion.</p></div>
+        <div class="faq-row"><strong>Q3: How are the score matrix and results delivered?</strong><p>Ans: Detailed spatial logic tracking and charts are updated straight on the response profile view post-submission.</p></div>
+    </div>
+</div>
+
+<div id="giftModal" class="info-content-modal">
+    <div class="modal-body">
+        <span class="close-modal" onclick="closeSectionModal('giftModal')">&times;</span>
+        <h2>Share Gift & Rewards</h2>
+        <p>Give us your structural experience feedback. Support the academy or redeem access values below.</p>
+        <div class="upi-box">Official UPI Merchant ID: <strong>9761702726-6@axl</strong></div>
+        <div class="redeem-container">
+            <input type="text" id="couponInput" placeholder="Enter Redeem Code Here...">
+            <button onclick="executeRedeemVerification()">Validate Code</button>
+        </div>
+        <p id="redeemStatus" style="margin-top:10px; font-weight:bold; font-size:13px;"></p>
+    </div>
+</div>
+
+<div id="settingsModal" class="info-content-modal">
+    <div class="modal-body">
+        <span class="close-modal" onclick="closeSectionModal('settingsModal')">&times;</span>
+        <h2>Portal System Settings</h2>
+        
+        <div class="settings-control-row">
+            <span>Select System Interface Theme:</span>
+            <select id="themeSelector" onchange="applySystemThemeChange()">
+                <option value="cyan">Dark Navy + Neon Cyan</option>
+                <option value="purple">Purple + Royal Blue</option>
+                <option value="dark">Classic Deep Slate Black</option>
+            </select>
+        </div>
+        
+        <div class="settings-control-row">
+            <span>Ringtone (Azimov Longing):</span>
+            <select id="ringtoneTrackSelector" onchange="switchTrackSelection()">
+                <option value="track1">Azimov Longing Default</option>
+                <option value="track2">Cyber Beep Electronic</option>
+                <option value="track3">Cosmic Clock Ticking</option>
+            </select>
+        </div>
+
+        <div class="settings-control-row volume-control-wrapper">
+            <span>Ringtone Volume Level:</span>
+            <div class="volume-slider-box">
+                <button type="button" class="vol-step-btn" onclick="decrementVolumeStep()">-</button>
+                <input type="range" id="volumeSliderControl" min="0" max="100" value="70" oninput="adjustAudioEngineVolume()">
+                <button type="button" class="vol-step-btn" onclick="incrementVolumeStep()">+</button>
+            </div>
+        </div>
+        
+        <div class="settings-control-row">
+            <span>Portal Ringtone Audio Engine:</span>
+            <label class="toggle-switch-wrapper">
+                <input type="checkbox" id="audioToggleSwitch" onchange="handleAudioToggleChange()">
+                <span class="toggle-slider"></span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="container">
+    <h2>Your IQ Test Result</h2>
+
+    
+
+    <div class="formula-box">
+        IQ = (
+        <div class="fraction">
+            <span class="numerator">Mental Age</span>
+            <span>Chronological Age</span>
+        </div>
+        ) x 100
+    </div>
+
+    <p>Enter Your Real Age (Chronological Age) Below:</p>
+    <input type="number" id="ca-input" placeholder="Enter Your Chronological Age" min="10" max="100" maxlength="3" oninput="if(this.value.length > 3) this.value = this.value.slice(0,3);">
+    <br>
+    <button onclick="doCalculation()">Calculate IQ Score</button>
+
+    <div class="warning-ticker">
+    <div class="ticker-text">
+        ⚠️ Enter your real age for an accurate and valid IQ assessment result. Incorrect age details may affect test accuracy. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        ⚠️ Enter your real age for an accurate and valid IQ assessment result. Incorrect age details may affect test accuracy.
+    </div>
+</div>
+
+    <div id="iq-output"></div>
+</div>
+
+<script>
+    // 1. LocalStorage se score uthao
+    const rawScore = parseInt(localStorage.getItem("mentalAge")) || 0;
+
+    const iqTable = [
+    { min: 0, max: 5, ma: 6 },
+    { min: 6, max: 10, ma: 8 },
+    { min: 11, max: 15, ma: 10 },
+    { min: 16, max: 20, ma: 12 },
+    { min: 21, max: 25, ma: 14 },
+    { min: 26, max: 30, ma: 16 },
+    { min: 31, max: 35, ma: 18 },
+    { min: 36, max: 40, ma: 20 },
+    { min: 41, max: 45, ma: 22 },
+    { min: 46, max: 50, ma: 24 },
+    { min: 51, max: 55, ma: 26 },
+    { min: 56, max: 60, ma: 28 },
+    { min: 61, max: 65, ma: 30 },
+    { min: 66, max: 70, ma: 32 },
+    { min: 71, max: 75, ma: 34 },
+    { min: 76, max: 80, ma: 36 },
+    { min: 81, max: 85, ma: 38 },
+    { min: 86, max: 90, ma: 40 },
+    { min: 91, max: 95, ma: 42 },
+    { min: 96, max: 100, ma: 44 }
+];
+
+    // 3. Mental Age nikalna (Score 0 par 0 aayega)
+    let mentalAge = 0;
+    if (rawScore > 0) {
+        for (let range of iqTable) {
+            if (rawScore >= range.min && rawScore <= range.max) {
+                mentalAge = range.ma;
+                break;
+            }
+        }
+    }
+
+  function doCalculation() {
+    // 1. Pehle input uthao
+    const cAgeInput = document.getElementById('ca-input').value;
+    const output = document.getElementById('iq-output');
+
+    // 2. ALERT Logic: Agar khali hai ya zero hai toh yahin rok do
+    if (cAgeInput === "" || parseFloat(cAgeInput) <= 0) {
+        alert("Enter Your Chronological Age to Begin the Assessment!");
+        output.innerHTML = ""; // Purana result clear kar do agar kuch hai toh
+        return; // Ye line niche ka saara code chalne se rok degi
+    }
+
+    // 3. Agar age sahi hai, tab calculation shuru karo
+    const cAge = parseFloat(cAgeInput);
+    
+    // Yahan se aapka puraana code (Line 98 se) shuru hoga...
+    // let score = parseInt(localStorage.getItem("userScore"))... etc.
+
+ // script.js se save kiya hua data
+    let score = parseInt(localStorage.getItem("userScore")) || 0; 
+    let timeTaken = parseInt(localStorage.getItem("timeTaken")) || 480; 
+
+    let finalIQ = 0;
+
+    // --- STEP 1: ACCURACY (70% Weight) ---
+let accuracy = (score / 30); 
+
+// --- STEP 2: SPEED (30% Weight) ---
+let T = timeTaken / 300; 
+let speedFactor = (T <= 1) ? Math.min(1.5, 1 + (1 - T) * 0.5) : Math.max(0.7, 1 - (T - 1) * 0.2);
+
+// --- STEP 3: PERFORMANCE SCORE ---
+let performanceScore = (accuracy * 70) + (speedFactor * 30);
+
+// --- STEP 4: IQ MAPPING (140 Target Adjustment) ---
+let ageAdjustment = (cAge >= 15 && cAge <= 20) ? 8 : 0; // 18 saal ke liye +8
+
+// Final Calculation: Multiplier 1.1 use kiya hai realistic 140 ke liye
+let finalIQValue = (performanceScore * 1.1) + 12 + ageAdjustment;
+finalIQ = finalIQValue.toFixed(1);
+
+    // 1. Pehle category decide karo
+let iqCategory = "";
+if (finalIQ >= 160) { iqCategory = "Genius Level"; }
+else if (finalIQ >= 145) { iqCategory = "Highly Gifted"; }
+else if (finalIQ >= 130) { iqCategory = "Gifted"; }
+else if (finalIQ >= 120) { iqCategory = "Superior"; }
+else if (finalIQ >= 110) { iqCategory = "High Average"; }
+else if (finalIQ >= 90) { iqCategory = "Average"; }
+else if (finalIQ >= 80) { iqCategory = "Low Average"; }
+else if (finalIQ >= 70) { iqCategory = "Borderline"; }
+else { iqCategory = "Extremely Low"; }
+
+// 2. Ab ise LocalStorage mein save karo taaki certificate page ise padh sake
+localStorage.setItem("iqCategory", iqCategory);
+localStorage.setItem("finalIQScore", finalIQ);
+    
+
+    // --- 3. Result Display Update (Wahi Pyari Design) ---
+    output.innerHTML = `
+        <div style="background:#f8f9fa; padding:20px; border-radius:15px; border:2px solid #2ed573;">
+            <p style="font-size:18px; text-align:center;">Marks Obtained: <b>${score}/30</b></p>
+            <p style="font-size:16px; color:#666; text-align:center;">Time Taken: <b>${Math.floor(timeTaken/60)}m ${timeTaken%60}s</b></p>
+            <hr style="border:0.5px solid #eee; margin:15px 0;">
+            <h1 style="color:#2ed573; font-size:40px; margin:10px 0; text-align:center;">IQ: ${finalIQ}</h1>
+         <p style="font-size:14px; margin-bottom:15px; text-align:center;">Rating: ${iqCategory}</p>
+            <button onclick="startLoading()" style="background:#28a745; color:white; padding:15px; width:100%; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:18px;">
+                GET CERTIFICATE
+            </button>
+        </div>
+    `;
+
+    // 4. Data Save (Certificate aur Date/Time ke liye)
+    localStorage.setItem('finalIQScore', finalIQ);
+    const abhi = new Date();
+    localStorage.setItem('certDate', abhi.toLocaleDateString('en-GB'));
+    localStorage.setItem('certTime', abhi.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+}
+
+function startLoading() {
+    window.location.href = 'certificate.html';
+}
+// 📱 MOBILE BACK BUTTON -> GO TO INDEX.HTML
+window.history.pushState(null, null, window.location.href);
+window.addEventListener('popstate', function(event) {
+    // Payment page se back karne par index.html par bhejo
+    window.location.href = 'test.html';
+    window.history.pushState(null, null, window.location.href);
+});
+
+  let audioInstance = null; 
+
+function togglePortalMenu() {
+    const panel = document.getElementById('menuPanel');
+    const overlay = document.getElementById('menuOverlay');
+    panel.classList.toggle('open');
+    overlay.classList.toggle('open');
+}
+
+function toggleSubDropdown(dropdownId) {
+    const dropdown = document.getElementById(dropdownId);
+    dropdown.classList.toggle('active');
+}
+
+function toggleShareLinks(event) {
+    event.stopPropagation();
+    const stack = document.getElementById('socialStack');
+    stack.classList.toggle('expanded');
+}
+
+document.getElementById('menuPanel').addEventListener('click', function(e) {
+    const stack = document.getElementById('socialStack');
+    if (!document.getElementById('shareThisItem').contains(e.target) && !stack.contains(e.target)) {
+        stack.classList.remove('expanded');
+    }
+});
+
+function openSectionModal(modalId) {
+    document.getElementById(modalId).classList.add('show');
+}
+
+function closeSectionModal(modalId) {
+    document.getElementById(modalId).classList.remove('show');
+}
+
+function executeRedeemVerification() {
+    const code = document.getElementById('couponInput').value.trim().toUpperCase();
+    const statusMsg = document.getElementById('redeemStatus');
+    
+    if(code === "") {
+        statusMsg.style.color = "#e71d36";
+        statusMsg.innerText = "Please input a valid key payload first.";
+        return;
+    }
+    
+    if(code === "SPACE50" || code === "VARUNRIDER") {
+        statusMsg.style.color = "#2ec4b6";
+        statusMsg.innerText = "Code Verified Successfully! Premium Access Initiated.";
+    } else {
+        statusMsg.style.color = "#e71d36";
+        statusMsg.innerText = "Invalid Redeem Code entry. Please try another key.";
+    }
+}
+
+function applySystemThemeChange() {
+    const selection = document.getElementById('themeSelector').value;
+    document.body.className = ""; 
+    
+    if(selection === "purple") {
+        document.body.classList.add('theme-purple');
+    } else if (selection === "dark") {
+        document.body.classList.add('theme-dark');
+    }
+}
+
+// Audio Engine: Plays Audio and controls Volume
+function handleAudioToggleChange() {
+    const isSoundEnabled = document.getElementById('audioToggleSwitch').checked;
+    
+    if(isSoundEnabled) {
+        if (!audioInstance) {
+            audioInstance = new Audio('ringtone.mp3'); 
+            audioInstance.loop = true;
+        }
+        adjustAudioEngineVolume();
+        
+        audioInstance.play().catch(err => {
+            console.log("Audio play blocked: ", err);
+        });
+    } else {
+        if (audioInstance) {
+            audioInstance.pause();
+        }
+    }
+}
+
+// Dynamically updates the ringtone volume level [0.0 to 1.0]
+function adjustAudioEngineVolume() {
+    const currentSliderValue = document.getElementById('volumeSliderControl').value;
+    if (audioInstance) {
+        audioInstance.volume = currentSliderValue / 100;
+    }
+}
+
+// FIXED FEATURE: Decrement Volume Step via Button (-)
+function decrementVolumeStep() {
+    const slider = document.getElementById('volumeSliderControl');
+    let currentValue = parseInt(slider.value);
+    currentValue = Math.max(0, currentValue - 5); // 5 points se decrease karega, limit 0 tak
+    slider.value = currentValue;
+    adjustAudioEngineVolume();
+}
+
+// FIXED FEATURE: Increment Volume Step via Button (+)
+function incrementVolumeStep() {
+    const slider = document.getElementById('volumeSliderControl');
+    let currentValue = parseInt(slider.value);
+    currentValue = Math.min(100, currentValue + 5); // 5 points se increase karega, limit 100 tak
+    slider.value = currentValue;
+    adjustAudioEngineVolume();
+}
+
+function switchTrackSelection() {
+    const isSoundEnabled = document.getElementById('audioToggleSwitch').checked;
+    
+    if (audioInstance) {
+        audioInstance.pause();
+        audioInstance = null;
+    }
+    
+    if(isSoundEnabled) {
+        handleAudioToggleChange();
+    }
+}
+
+</script>
+
+<script src="security.js"></script>
+</body>
+</html>

@@ -1,0 +1,725 @@
+j/* 1. Page Setup */
+body {
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Mobile pe scrolling ke liye best */
+    min-height: 100vh;
+}
+
+#home-section {
+    width: 100%;
+    max-width: 500px; /* Desktop pe dabba wide rahega */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* 2. Logo - GOL aur CHOTA */
+.logo {
+    position: fixed top 0;
+    margin-top: 60px;
+    display: flex;
+    width: 100px;
+    align-items: center;
+    border-radius: 8px;
+
+}
+
+/* 3. Registration Card (Wide & Responsive) */
+.registration-card {
+    background: white;
+    width: 100%;         /* Mobile pe puri width lega */
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    box-sizing: border-box;
+}
+
+.registration-card h2 {
+    font-size: 1.4rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* 4. Input & Gender Box Size Fix */
+.input-group {
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+/* Input aur Select dono ko ek jaisa wide rakha hai */
+.input-group input, 
+.input-group select {
+    width: 100%;         /* Dono box ek barabar honge */
+    padding: 12px;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+    display: block;
+    background-color: #fff;
+}
+
+/* 5. Instructions (Photo 2 Style) */
+/* 5. Instructions (Photo 2 Style) */
+#warning-box {
+    background-color: #fff9e6;
+    border-left: 5px solid #ffcc00;
+    border-right: 5px solid #ffcc00;
+    padding: 15px;
+    margin: 20px auto;      /* Center mein rakhne ke liye */
+    max-width: 400px;       /* Isse chaurai (width) kam ho jayegi */
+    border-radius: 5px;
+    text-align: left;
+    box-sizing: border-box; /* Padding ko width ke andar rakhne ke liye */
+    margin-top: 10px;
+}
+
+#warning-box h3 {
+    font-size: 16px;
+    margin: 0 0 10px 0;
+    color: #856404;
+}
+
+#warning-box ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+#warning-box li {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+/* 6. Button */
+#start-btn {
+    width: 20%;
+    padding: 10px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#start-btn:hover {
+    background-color: #1b5e20;
+}
+
+/* 7. Mobile Optimization */
+@media (max-width: 480px) {
+    .registration-card {
+        padding: 15px;
+    }
+    .registration-card h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Gender Select Box ka Design */
+#user-gender {
+    width: 100%;             /* Name aur Age wale box jitni chaurai */
+    padding: 10px;           /* Box ke andar thodi jagah */
+    margin-top: 5px;         /* Upar se thoda gap */
+    border: 1px solid #ccc;  /* Halka border */
+    border-radius: 5px;      /* Corners ko gol (rounded) banane ke liye */
+    font-size: 14px;
+    background-color: white;
+    cursor: pointer;         /* Mouse le jaane par hath ka nishan aaye */
+    box-sizing: border-box;  /* Width ko sahi se fit karne ke liye */
+}
+
+/* Jab box par click karein tab border ka rang badle */
+#user-gender:focus {
+    border-color: #2e7d32;   /* Green border focus par */
+    outline: none;
+}
+
+#payment-page {
+    text-align: center;
+    padding: 30px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 500px;
+}
+
+#payment-page h3 {
+    color: #2c3e50;
+    font-size: 24px;
+}
+
+#payment-page img {
+    border: 5px solid #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+#utr {
+    width: 80%;
+    padding: 12px;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* style.css mein sabse neeche */
+
+.loader {
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #28a745; /* Green color jo aapke button se match kare */
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* KBC Style Timer Design */
+#timer-container {
+    display: none; /* Pehle chhupa rahega */
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, #000851 0%, #1cb5e0 100%);
+    color: #fff;
+    padding: 10px 40px;
+    border: 3px solid #ffd700;
+    border-radius: 50px;
+    font-family: 'Orbitron', sans-serif; /* Digital font feel */
+    font-size: 28px;
+    font-weight: bold;
+    box-shadow: 0 0 20px #ffd700;
+    z-index: 9999;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+#timer-container span {
+    color: #ffd700; /* Numbers golden dikhenge */
+}
+
+/* Sabse pehle poora splash screen fix karo */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff; /* Ya jo bhi aapka background color hai */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* Ye aapka Brain Image/Video hai */
+#splash-screen img, 
+#splash-screen video {
+    /* Mobile ke liye default setting: waisa hi jaisa pehle tha */
+    width: 100%; 
+    height: auto;
+    object-fit: contain;
+}
+
+/* Laptop aur Tablet ke liye Specific Setting (Media Query) */
+@media (min-width: 768px) {
+    #splash-screen img, 
+    #splash-screen video {
+        /* Laptop par screen ka sirf 40% ya 50% hissa lega, baaki center rahega */
+        width: 50%; 
+        max-width: 600px; /* Isse zyada bada kabhi nahi hoga */
+        height: auto;
+    }
+}
+
+
+/* Poore page ka background */
+body {
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Main Question Box */
+.question-container {
+    background: #ffffff;
+    max-width: 700px;
+    margin: 10px auto !important;
+    padding: 20px 15px !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border-left: 5px solid #ff4757; /* Red accent color */
+    border-right: 5px solid #ff4757;
+}
+
+/* Question Text */
+.question-text {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2f3542;
+    line-height: 1.4 !important;
+    width: 100% !important;
+    margin-bottom: 25px !important
+}
+
+/* Options Wrapper */
+.option-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Individual Option Box */
+.option {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 18px !important;
+    font-size: 18px !important;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    transition: 0.2s all;
+}
+
+.option:hover {
+    background: #e9ecef;
+    border-color: #ff4757;
+}
+
+/* Radio Button Style */
+.option input[type="radio"] {
+    margin-right: 20px !important;
+    transform: scale(1.6) !important;
+    cursor: pointer;
+}
+
+/* Option Text (A, B, C, D) */
+.option-card {
+    font-weight: bold;
+    color: #ff4757;
+    margin-right: 10px;
+}
+
+/* Title ko timer se neeche lane ke liye */
+.test-header {
+    margin-top: 110px !important; /* Is number ko badhaoge toh title aur neeche jayega */
+    text-align: center;
+    width: 100%;
+    width: fit-content;
+    display: flex;
+    min-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Title ko bold aur bada karne ke liye */
+.test-header h1 {
+    font-weight: 600 !important; /* Ekdum Bold */
+    font-size: 18px !important;  /* Bada size */
+    color: #555;         
+    letter-spacing: 0.5;       /* Black color taaki saaf dikhe */
+    text-transform: uppercase;
+    margin: 0;
+    padding: 5px 15px;
+}
+
+#questions-container {
+    display: block !important;
+}
+
+/* Body background light yellow (very light) */
+body {
+    background-color: #fffdf0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 15px;
+    font-family: sans-serif;
+}
+
+.main-wrapper {
+    width: 80%;
+    max-width: 550px;
+    text-align: center;
+}
+
+/* Card Style with Yellow Left Border */
+.instructions-card {
+    color: #856404;
+    width: 90%;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: left;
+    /* Ye hai aapki requested yellow line */
+    max-width: 500;
+    border-left: 5px solid #f1c40f; 
+    border-right: 5px solid #f1c40f;
+    margin: 20px auto;
+}
+
+.instruction-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 25px;
+}
+
+.instruction-header h2 {
+    font-size: 20px;
+    color: #856404;
+    margin: 0;
+}
+
+.warning-icon {
+    font-size: 22px;
+}
+
+.points-list {
+    list-style: none; /* Dots hatane ke liye */
+    padding: 0;
+}
+
+.points-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 15px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Custom Bullet points */
+.points-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Button centered and capsule shape */
+.start-test-btn {
+    display: block;
+    width: 180px;
+    margin: 50px auto 10px auto;
+    padding: 12px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .instructions-card {
+        padding: 20px;
+    }
+}
+
+.main-logo {
+    width: 70px;
+    height: auto;
+    display: block;
+    margin: 60px auto 20px auto; /* 30px upar se gap mobile par perfect hai */
+}
+
+
+
+
+/* WhatsApp Style Back Button */
+.back-button {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000000; /* Pure Black color */
+    z-index: 9999;
+    cursor: pointer;
+}
+
+.back-arrow-svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+.back-text {
+    font-size: 17px;
+    font-weight: 500;
+    font-family: sans-serif;
+}
+
+/* Poori website par selection aur images ko protect karein */
+* {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none; /* Mobile par long-press block */
+}
+
+/* Lekin inputs ko chhod kar (taaki user type kar sake) */
+input, textarea {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+}
+
+/* QR Code aur Logo ko touch-proof banayein */
+img {
+    pointer-events: none;
+    -webkit-user-drag: none;
+}
+
+
+   :root {
+    --bg-dark: #0b132b;
+    --bg-panel: #1c2541;
+    --border-line: #3a506b;
+    --neon-accent: #00b4d8;
+    --text-white: #ffffff;
+    --text-grey: #8ecae6;
+}
+
+/* Header Navbar Config - Highest priority stacking to prevent cutting */
+.razor-header {
+   position: fixed;        /* Isse header apni jagah par lock ho jayega */
+    top: 0;                 /* Screen ki sabse upar wali line se chipka dega */
+    left: 50%;              /* Pehle 50% left me le jayega */
+    transform: translateX(-50%); /* Phir perfect mathematical center me align karega */
+    width: 100%;            /* Poori screen ki width cover karega Razorpay ki tarah */
+    z-index: 999;     
+    height: 50px;      /* Taaki koi text iske upar na tair sake */
+    
+    background-color: var(--bg-dark); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 18px; 
+    border-bottom: 2px solid var(--border-line); /* Clean bottom line look */
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 1s ease;
+    visibility: hidden;
+}
+.header-left { display: flex; align-items: center; gap: 14px; width: calc(100% - 60px); }
+.menu-btn, .home-btn {
+    background: none; border: none; color: var(--text-white);
+    font-size: 18px; cursor: pointer; transition: color 0.2s; flex-shrink: 0;
+}
+.menu-btn:hover, .home-btn:hover { color: var(--neon-accent); }
+
+/* Prevents the text title from breaking or shrinking on desktop screens */
+.portal-title { 
+    color: var(--text-white); 
+    font-size: 16px; 
+    font-weight: 600; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0; 
+}
+.user-avatar {
+    background: #2b3a67; color: #fff; width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; font-size: 13px; font-weight: bold; flex-shrink: 0;
+}
+
+/* Slider Frame Overlay */
+.portal-menu-overlay {
+    display: none; position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 99999;
+}
+.portal-menu-overlay.open { display: block; }
+
+/* Menu Slide System (Forces view directly over logos and bodies) */
+.portal-menu-panel {
+    position: fixed; top: 0; left: -310px; width: 310px; height: 100%;
+    background-color: var(--bg-panel); z-index: 100000;
+    transition: left 0.3s ease-in-out; display: flex; flex-direction: column;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.5); font-family: sans-serif;
+}
+.portal-menu-panel.open { left: 0; }
+
+.brand-section { padding: 14px; background-color: var(--bg-dark); border-bottom: 1px solid var(--border-line); text-align: center; }
+.brand-section h3 { margin: 0; color: var(--text-white); font-size: 15px; letter-spacing: 0.5px; }
+
+.menu-list { padding: 10px 6px; display: flex; flex-direction: column; gap: 4px; overflow-y: auto; }
+.menu-item { display: flex; align-items: center; gap: 12px; padding: 8px 10px; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
+.menu-item:hover { background-color: rgba(255,255,255,0.06); }
+
+.item-icon { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; flex-shrink: 0; }
+.inner-item-logo { width: 100%; height: 100%; border-radius: 50%; }
+
+.green-icon { background-color: #2ec4b6; }
+.blue-icon { background-color: #0077b6; }
+.grey-icon { background-color: #6c757d; }
+.share-icon { background-color: #00b4d8; }
+.orange-icon { background-color: #ff9f1c; }
+.settings-icon { background-color: #4a5759; }
+.red-icon { background-color: #e71d36; }
+.dark-icon { background: none; }
+
+.item-text h4 { color: var(--text-white); margin: 0; font-size: 13px; font-weight: 600; }
+.item-text p { color: var(--text-grey); margin: 2px 0 0 0; font-size: 11px; line-height: 1.2; }
+
+/* Contact Support Dropdown Setup with Click Action Colors */
+.menu-item-wrapper { display: flex; flex-direction: column; }
+.menu-sub-dropdown {
+    max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
+    background-color: rgba(0,0,0,0.25); padding: 0 12px; border-radius: 4px;
+    margin: 0 8px; display: flex; flex-direction: column; gap: 6px;
+}
+.menu-sub-dropdown.active { max-height: 140px; padding: 10px 12px; margin-bottom: 4px; border: 1px solid rgba(255,255,255,0.05); }
+.sub-info-line { color: #e0f2fe; font-size: 11px; display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.link-action-row { color: var(--neon-accent); font-weight: bold; padding: 4px 0; transition: transform 0.2s; }
+.link-action-row:hover { transform: translateX(3px); color: #fff; }
+.sub-info-line i { width: 14px; text-align: center; }
+
+/* Share This Stack Configurations (Untouched Style Mechanics) */
+.social-side-stack {
+    position: absolute; right: 8px; top: 120px;
+    display: flex; flex-direction: column; gap: 6px; z-index: 1010;
+    background: rgba(11, 19, 43, 0.9); padding: 6px; border-radius: 16px;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); width: 30px; overflow: hidden;
+}
+.social-side-stack.expanded { width: 230px; border-radius: 8px; box-shadow: -4px 4px 12px rgba(0,0,0,0.4); }
+.social-link-item { display: flex; align-items: center; text-decoration: none; color: #fff; height: 30px; width: 100%; }
+.social-link-item i { min-width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 14px; color: #fff; }
+.link-text { font-size: 10px; margin-left: 8px; white-space: nowrap; opacity: 0; transition: opacity 0.2s; }
+.social-side-stack.expanded .link-text { opacity: 1; }
+
+.insta-color i { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
+.yt-color i { background-color: #f00; }
+.fb-color i { background-color: #1877f2; }
+.tw-color i { background-color: #000; }
+.li-color i { background-color: #0a66c2; }
+.tg-color i { background-color: #0088cc; }
+
+/* Modals Overlay Settings */
+.info-content-modal {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.75); z-index: 999999; align-items: center; justify-content: center;
+    font-family: sans-serif; padding: 10px; box-sizing: border-box;
+}
+.info-content-modal.show { display: flex; }
+.modal-body {
+    background-color: var(--bg-panel); border: 1px solid var(--border-line);
+    padding: 20px; border-radius: 10px; width: 100%; max-width: 400px;
+    position: relative; color: var(--text-white); box-shadow: 0 8px 24px rgba(0,0,0,0.6); box-sizing: border-box;
+}
+.close-modal { position: absolute; top: 10px; right: 15px; font-size: 22px; color: var(--text-grey); cursor: pointer; }
+.close-modal:hover { color: #fff; }
+.modal-body h2 { margin-top: 0; font-size: 16px; border-bottom: 1px solid var(--border-line); padding-bottom: 8px; color: var(--neon-accent); }
+.clean-bullet-list { padding-left: 18px; margin: 12px 0; font-size: 12px; display: flex; flex-direction: column; gap: 6px; line-height: 1.4; }
+.modal-logo-center { text-align: center; margin-bottom: 10px; }
+.modal-logo-center img { width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--border-line); }
+.academy-section-block { margin-bottom: 12px; }
+.academy-section-block h3 { margin: 0 0 4px 0; font-size: 13px; color: #99e2b4; }
+.academy-section-block p { margin: 0; font-size: 11.5px; color: #e2eafc; line-height: 1.4; }
+.faq-row { margin-bottom: 12px; font-size: 12px; }
+.faq-row p { margin: 4px 0 0 0; color: #cbd5e1; }
+
+.upi-box { background: rgba(0,0,0,0.3); padding: 8px; border-radius: 4px; font-size: 12px; text-align: center; margin: 10px 0; border: 1px dashed var(--border-line); }
+.redeem-container { display: flex; gap: 8px; margin-top: 12px; }
+.redeem-container input { flex: 1; padding: 8px; background: #0b132b; border: 1px solid var(--border-line); color: #fff; border-radius: 4px; font-size: 12px; }
+.redeem-container button { padding: 8px 14px; background: #ff9f1c; border: none; color: #000; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 12px; }
+
+.settings-control-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; font-size: 12.5px; gap: 10px; }
+.settings-control-row select { padding: 6px; background: #0b132b; color: #fff; border: 1px solid var(--border-line); border-radius: 4px; font-size: 12px; }
+
+.toggle-switch-wrapper { position: relative; display: inline-block; width: 38px; height: 20px; }
+.toggle-switch-wrapper input { opacity: 0; width: 0; height: 0; }
+.toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #4a5759; transition: .3s; border-radius: 20px; }
+.toggle-slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
+input:checked + .toggle-slider { background-color: var(--neon-accent); }
+input:checked + .toggle-slider:before { transform: translateX(18px); }
+
+body.theme-purple { --bg-dark: #1a1a2e; --bg-panel: #16213e; --border-line: #0f3460; --neon-accent: #e94560; }
+body.theme-dark { --bg-dark: #121212; --bg-panel: #1e1e1e; --border-line: #333333; --neon-accent: #cf6679; }
+
+
+/* Volume Control Responsive Fix */
+.volume-slider-box{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    width:100%;
+    max-width:170px;
+
+    flex-wrap:nowrap;
+}
+
+.volume-slider-box input[type="range"]{
+    width:100%;
+    min-width:0;
+}
+
+.volume-slider-box i{
+    flex-shrink:0;
+    font-size:14px;
+}
+
+
+/* 📱 Special Premium Rules for Mobile Screens */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Header ke title ka size mobile ke hisab se thoda chota aur set */
+    .portal-title {
+        font-size: 14px !important;  /* Desktop par 16px tha, mobile par 14px best hai */
+        max-width: 160px;            /* Taaki avatar ya buttons se takraye nahi */
+    }
+
+    /* 2. Social side stack ko mobile par thoda right se chipka do aur chota rakho */
+    .social-side-stack {
+        top: auto !important;
+        bottom: 20px !important;    /* 🧭 Mobile par side ke bajaye neeche right me float karega */
+        right: 5px !important;
+    }
+    
+    .social-side-stack.expanded {
+        width: 180px !important;    /* 🎯 Mobile par expand hone par card ko zyada nahi dabayega */
+    }
+    
+    /* 3. Modal body (Redeem/FAQ modals) ko mobile par screen se chipakne se rokne ke liye */
+    .modal-body {
+        width: 92% !important;      /* Dono side se halki padding bachegi, chipkega nahi */
+        padding: 15px !important;
+    }
+}
